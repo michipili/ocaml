@@ -203,6 +203,19 @@ let mapi f s =
     r
   end
 
+let fold_left f x s =
+  let l = length s in
+  let rec loop ax i =
+    if i >= l then ax else loop (f ax (unsafe_get s i)) (i+1)
+  in
+  loop x 0
+
+let fold_right f s x =
+  let rec loop ax i =
+    if i < 0 then ax else loop (f (unsafe_get s i) ax) (i-1)
+  in
+  loop x (length s - 1)
+
 let uppercase s = map Char.uppercase s
 let lowercase s = map Char.lowercase s
 

@@ -146,6 +146,16 @@ val mapi : (int -> char -> char) -> string -> string
     string that is returned.
     @since 4.02.0 *)
 
+val fold_left : ('a -> char -> 'a) -> 'a -> string -> 'a
+(** [String.fold_left f x s] computes
+   [f (... (f (f x s.[0]) s.[1]) ...) s.[n-1]],
+   where [n] is the length of the string [s]. *)
+
+val fold_right : (char -> 'a -> 'a) -> string -> 'a -> 'a
+(** [String.fold_right f s x] computes
+   [f s.(0) (f s.(1) ( ... (f s.(n-1) x) ...))],
+   where [n] is the length of the string [s]. *)
+
 val trim : string -> string
 (** Return a copy of the argument, without leading and trailing
    whitespace.  The characters regarded as whitespace are: [' '],

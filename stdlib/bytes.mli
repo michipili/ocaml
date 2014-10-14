@@ -171,6 +171,16 @@ val mapi : (int -> char -> char) -> bytes -> bytes
     index (in increasing index order) and stores the resulting bytes
     in a new sequence that is returned as the result. *)
 
+val fold_left : ('a -> char -> 'a) -> 'a -> bytes -> 'a
+(** [Bytes.fold_left f x s] computes
+   [f (... (f (f x s.[0]) s.[1]) ...) s.[n-1]],
+   where [n] is the length of the byte sequence [s]. *)
+
+val fold_right : (char -> 'a -> 'a) -> bytes -> 'a -> 'a
+(** [Bytes.fold_right f s x] computes
+   [f s.(0) (f s.(1) ( ... (f s.(n-1) x) ...))],
+   where [n] is the length of the byte sequence [s]. *)
+
 val trim : bytes -> bytes
 (** Return a copy of the argument, without leading and trailing
     whitespace. The bytes regarded as whitespace are the ASCII

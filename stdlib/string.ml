@@ -68,6 +68,10 @@ let map f s =
   B.map f (bos s) |> bts
 let mapi f s =
   B.mapi f (bos s) |> bts
+let fold_left f x s =
+  B.fold_left f x (bos s)
+let fold_right f s x =
+  B.fold_right f (bos s) x
 
 (* Beware: we cannot use B.trim or B.escape because they always make a
    copy, but String.mli spells out some cases where we are not allowed
